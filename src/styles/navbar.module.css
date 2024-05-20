@@ -1,0 +1,62 @@
+
+   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+  --primary-color: rgb(209, 229, 236); /* Light blue */
+  --secondary-color: black; /* Black */
+  --hover-color: #ddd; /* Light grey */
+  --background-color: rgb(98, 102, 103); /* Light blue */
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.nav {
+  background-color: var(--background-color);
+  color: var(--secondary-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  font-size: 1.8rem; /* Increased size */
+  font-weight: 700; /* Bold */
+}
+
+.navLinks {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navLinks li a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  font-size: 1.5rem; /* Increased size */
+  font-weight: 700; /* Bold */
+}
+
+.navLinks li a:hover {
+  text-decoration: underline;
+  color: var(--hover-color);
+}
+
+.navLinks li:last-child {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.5rem; /* Increased size */
+}
+
+/* New style for welcome text */
+.welcome {
+  color: var(--secondary-color);
+  font-size: 1.5rem; /* Increased size */
+  font-weight: 700; /* Bold */
+}

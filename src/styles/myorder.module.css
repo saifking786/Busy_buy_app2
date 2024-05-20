@@ -1,0 +1,24 @@
+.mainContainer{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* heading of the page */
+.orderHeading{
+    color:#475d59;
+}
+
+/* list of all the order's in user's database */
+.orderListContainer{
+    width: 75%;
+}
+
+.mainContainer a{
+    font-size: 1.2rem;
+    text-decoration: underline;
+    font-weight: 700;
+    color: #cb75c8;
+}

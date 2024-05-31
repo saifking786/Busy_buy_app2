@@ -1,6 +1,4 @@
 
-
-
 // react ref hook 
 import { useRef } from "react";
 
@@ -8,8 +6,8 @@ import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 // custom context hook (authentication)
-import { useAuth } from "../authContext";
-
+import { useDispatch } from "react-redux";
+import { createUserThunk,getInitialUserList } from "../authreducer";
 
 // css styles
 import styles from "../styles/signIn.module.css";
@@ -17,8 +15,9 @@ import styles from "../styles/signIn.module.css";
 
 // signup page
  function SignUp(){
-
+    const dispatch=useDispatch();
     // ref variables for name, email, password
+    dispatch(getInitialUserList())
     const nameRef=useRef();
     const emailRef=useRef();
     const passwordRef=useRef();
@@ -27,7 +26,7 @@ import styles from "../styles/signIn.module.css";
     const navigate=useNavigate();
 
     // function for creating new user
-    const {createUser}=useAuth();
+   
 
 
     // handle form submit
@@ -41,7 +40,7 @@ import styles from "../styles/signIn.module.css";
             password:passwordRef.current.value
         }
         // creating user
-        createUser(data);
+         dispatch(createUserThunk(data));
         // if user created redirect to corresponding page
         navigate("/signin");
     }

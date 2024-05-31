@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../authContext';
+import { useDispatch, useSelector } from "react-redux";
+import {removeSessionThunk} from '../../authreducer';
+import { getInitialUserList } from '../../authreducer';
 import styles from '../../styles/navbar.module.css'; // Import CSS module
 // Make sure the path is correct according to your project structure
 import { Outlet } from 'react-router-dom';
 
 function Navbar() {
+  const dispatch=useDispatch();
   // Accessing authentication state and functions
-  const { isLoggedIn, signout } = useAuth();
-  console.log("mera",isLoggedIn);
+  useEffect(()=>{
+    dispatch(getInitialUserList())
+  });
+  const isLoggedIn = useSelector((state) => state.authReducer.isLoggedIn);
+
+  console.log("mera", isLoggedIn);
   return (
     <>
       {/* Navigation bar */}
@@ -30,7 +37,7 @@ function Navbar() {
               {/* Welcome message with username */}
               <li className={styles.welcome}>Welcome</li>
               {/* Log out button */}
-              <li onClick={signout}>Log Out</li>
+              <li onClick={()=>(dispatch(removeSessionThunk()))}>Log Out</li>
             </>
           ) : (
             <li><Link to='/signin'>Sign In</Link></li>

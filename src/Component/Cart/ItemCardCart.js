@@ -1,24 +1,25 @@
 import React from 'react';
-import { useProduct } from '../../ProductContext';
+// import { useProduct } from '../../ProductContext';
+import { useDispatch } from 'react-redux';
 import styles from './itemCardCart.module.css';
-
+import { removeCart,incToCartQuant,removeToCartQuant } from '../../ProductReducer';
 function ItemCardCart({ id, name, image, price, category, quantity }) {
     // Accessing functions from ProductContext
-    const { removeCart, incToCartQuant, removeToCartQuant } = useProduct();
-
+    // const { removeCart, incToCartQuant, removeToCartQuant } = useProduct();
+      const dispatch=useDispatch()
     // Function to remove item from cart
     const removeAddToCart = () => {
-        removeCart(id); 
+        dispatch(removeCart({id})); 
     };
 
     // Function to increase quantity of item in cart
     const inc = () => {
-        incToCartQuant(id);
+        dispatch(incToCartQuant({id}));
     };
 
     // Function to decrease quantity of item in cart
     const dec = () => {
-        removeToCartQuant(id);
+        dispatch(removeToCartQuant({id}));
     };
 
     return (

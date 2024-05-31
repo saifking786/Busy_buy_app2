@@ -1,20 +1,18 @@
 
   import { initializeApp } from 'firebase/app';
-  import { getAuth } from 'firebase/auth';
+
   import { getFirestore } from 'firebase/firestore';
 
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCBdcZzwUeVtEqVqNCxvb6rwiaLb3NpVY4",
-  authDomain: "buybusynew.firebaseapp.com",
-  projectId: "buybusynew",
-  storageBucket: "buybusynew.appspot.com",
-  messagingSenderId: "677315938753",
-  appId: "1:677315938753:web:16ee159309848ef61c4740"
-};
-
+  const firebaseConfig = {
+    apiKey: "AIzaSyDW8Qs5BcjLSDp6lQbMINWFVQJzq3_ZdZE",
+    authDomain: "buybusy-redux-a69d4.firebaseapp.com",
+    projectId: "buybusy-redux-a69d4",
+    storageBucket: "buybusy-redux-a69d4.appspot.com",
+    messagingSenderId: "846831202515",
+    appId: "1:846831202515:web:bc7eb307cdf099a7c9a426"
+  };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
 export const db = getFirestore(app);

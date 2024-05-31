@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { data } from '../Assets/data'; // Assuming data is imported from a data file
 import styles from '../styles/home.module.css'; // Import CSS module
 import ItemCard from '../Component/Home/ItemCard'; // Import ItemCard component
 import FilterCard from '../Component/Home/filterCard'; // Import FilterCard component
-
+import { ProductUser } from '../ProductReducer';
+import { useDispatch ,useSelector} from 'react-redux';
 function Home() {
     const [name, setName] = useState('');
     const [toggle, setToggle] = useState(true); // Toggle state for filtering
     const [filter, setFilter] = useState([]); // State for filtered items
     const [toggle2, setToggle2] = useState(true); // Toggle state for filter card display
-
+     const dispatch=useDispatch()
+    useEffect(()=>{
+          dispatch(ProductUser())
+     },[dispatch]);
     // Function to handle input change for search
     const handleChange = (e) => {
         setName(e.target.value);

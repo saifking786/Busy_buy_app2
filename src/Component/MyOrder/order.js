@@ -1,16 +1,23 @@
 
 // importing styles
 import styles from "./order.module.css";
-
+import { useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom'; // Import Link from react-router-dom
 // render each order detail
 export default function OrderDetail(props){
 
     // order details from props
     const {date,list,total}=props.order;
-
-
+    const navigate=useNavigate()
+    const isLoggedIn = useSelector((state) => state.authReducer.isLoggedIn);
+    if (!isLoggedIn) {
+        navigate("/");
+        return null; // or you can render a loading spinner or any other component
+    }
     return(
         // single order container
+        <>
+      {isLoggedIn && (
         <div>
             {/* date of the order */}
             <h1 className={styles.orderHeading}>
@@ -46,5 +53,7 @@ export default function OrderDetail(props){
 
             </table>
         </div>
+         )}
+        </>
     )
 }

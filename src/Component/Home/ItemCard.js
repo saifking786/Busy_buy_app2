@@ -1,25 +1,30 @@
 import React from 'react';
-import { useProduct } from '../../ProductContext'; // Import useProduct from ProductContext
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import styles from './itemCard.module.css'; // Import CSS module
 import { toast } from 'react-toastify'; // Import toast from react-toastify
 import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
-import { useAuth } from '../../authContext';
+import { addToCart ,ProductReducer} from '../../ProductReducer';
 
 function ItemCard({ id, name, image, price, category }) {
-    const { addToCart } = useProduct();
-    const {isLoggedIn} =useAuth()// Destructure addToCart function from useProduct
+    // const { addToCart } = useProduct();
+    const dispatch=useDispatch()
+    const  isLoggedIn  = useSelector((state)=>state.authReducer.isLoggedIn);// Destructure addToCart function from useProduct
     const navigate = useNavigate(); // Get navigate function from react-router-dom
-
     // Function to handle adding item to cart
+    //  dispatch(ProductReducer())
     const handleAddToCart = () => {
 
-        console.log("kya",isLoggedIn);
+        console.log("kya koi hai",isLoggedIn);
         if (isLoggedIn) {
             // If user is logged in, add item to cart
-            addToCart(id, name, image, price, category); // Call addToCart function from useProduct
-            toast.success(`${name} added to cart!`); // Display success message using toast
+           
+            dispatch(addToCart({id, name, image, price, category}));
+             // Call addToCart function from useProduct
+             console.log("mera cart");
+            toast.success(`${name} added to cart!`);
         } else {
-            // If user is not logged in, redirect to home page
+          
             navigate('/');
         }
     };
